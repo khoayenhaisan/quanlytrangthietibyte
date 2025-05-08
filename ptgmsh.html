@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PTGMSH</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+  <style>
+    .input-row {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 6px;
+      margin-top: 20px;
+      padding-bottom: 6px;
+    }
+    .input-row input {
+      flex: 0 0 auto;
+      width: 120px;
+      padding: 6px;
+    }
+    .input-row button {
+      flex: 0 0 auto;
+      height: 36px;
+    }
+    table, th, td {
+      border: 1px solid #aaa;
+      border-collapse: collapse;
+      padding: 4px 8px;
+    }
+  </style>
+</head>
+<body>
+<h1>PTGMSH</h1>
+<div>
+  <button onclick="exportToExcel()">📥 Xuất Excel</button>
+  <button onclick="exportToWord()">📄 Xuất Word</button>
+  <button onclick="exportToPDF()">🖨️ In PDF</button>
+</div>
+<table id="deviceTable">
+  <thead><tr><th>STT</th><th>K/P NHẬN</th><th>NGUỒN TS</th><th>DM THIẾT BỊ</th><th>TÊN TRANG THIẾT BỊ</th><th>MÃ TTB</th><th>MODEL QUI CÁCH</th><th>SERIAL</th><th>HÃNG SX</th><th>NƯỚC SX</th><th>NĂM SX</th><th>GIÁ TRỊ</th><th>TÌNH TRẠNG</th><th>TG BẢO HÀNH</th><th>CÁC TB KÈM THEO</th><th>Hành động</th></tr></thead>
+  <tbody id="deviceList"></tbody>
+</table>
+<div class="input-row">
+  <input id="f0" placeholder="K/P NHẬN">
+<input id="f1" placeholder="NGUỒN TS">
+<input id="f2" placeholder="DM THIẾT BỊ">
+<input id="f3" placeholder="TÊN TRANG THIẾT BỊ">
+<input id="f4" placeholder="MÃ TTB">
+<input id="f5" placeholder="MODEL QUI CÁCH">
+<input id="f6" placeholder="SERIAL">
+<input id="f7" placeholder="HÃNG SX">
+<input id="f8" placeholder="NƯỚC SX">
+<input id="f9" placeholder="NĂM SX">
+<input id="f10" placeholder="GIÁ TRỊ">
+<input id="f11" placeholder="TÌNH TRẠNG">
+<input id="f12" placeholder="TG BẢO HÀNH">
+<input id="f13" placeholder="CÁC TB KÈM THEO">
+  <button onclick="saveDevice()">Lưu thiết bị</button>
+</div>
+
+<script>
+let data = JSON.parse(localStorage.getItem("ptgmsh") || "[]");
+let editIndex = -1;
+render();
+
+function render() {
+  const tbody = document.getElementById("deviceList");
+  tbody.innerHTML = "";
+  data.forEach((d, i) => {
+    tbody.innerHTML += `<tr><td>${i + 1}</td>` + `<td>${d.f0}</td>`+`<td>${d.f1}</td>`+`<td>${d.f2}</td>`+`<td>${d.f3}</td>`+`<td>${d.f4}</td>`+`<td>${d.f5}</td>`+`<td>${d.f6}</td>`+`<td>${d.f7}</td>`+`<td>${d.f8}</td>`+`<td>${d.f9}</td>`+`<td>${d.f10}</td>`+`<td>${d.f11}</td>`+`<td>${d.f12}</td>`+`<td>${d.f13}</td>` +
+    `+ '<td><button onclick="edit(' + i + ')">✏️</button><button onclick="del(' + i + ')">🗑️</button></td></tr>'`;
+  });
+}
+
+function saveDevice() {
+  const newData = {
+    f0: document.getElementById("f0").value,
+    f1: document.getElementById("f1").value,
+    f2: document.getElementById("f2").value,
+    f3: document.getElementById("f3").value,
+    f4: document.getElementById("f4").value,
+    f5: document.getElementById("f5").value,
+    f6: document.getElementById("f6").value,
+    f7: document.getElementById("f7").value,
+    f8: document.getElementById("f8").value,
+    f9: document.getElementById("f9").value,
+    f10: document.getElementById("f10").value,
+    f11: document.getElementById("f11").value,
+    f12: document.getElementById("f12").value,
+    f13: document.getElementById("f13").value
+  };
+  if (editIndex >= 0) {
+    data[editIndex] = newData;
+    editIndex = -1;
+  } else {
+    data.push(newData);
+  }
+  localStorage.setItem("ptgmsh", JSON.stringify(data));
+  render();
+  document.querySelectorAll("input").forEach(i => i.value = "");
+}
+
+function edit(i) {
+  const d = data[i];
+  document.getElementById("f0").value = d.f0;
+document.getElementById("f1").value = d.f1;
+document.getElementById("f2").value = d.f2;
+document.getElementById("f3").value = d.f3;
+document.getElementById("f4").value = d.f4;
+document.getElementById("f5").value = d.f5;
+document.getElementById("f6").value = d.f6;
+document.getElementById("f7").value = d.f7;
+document.getElementById("f8").value = d.f8;
+document.getElementById("f9").value = d.f9;
+document.getElementById("f10").value = d.f10;
+document.getElementById("f11").value = d.f11;
+document.getElementById("f12").value = d.f12;
+document.getElementById("f13").value = d.f13;
+  editIndex = i;
+}
+
+function del(i) {
+  data.splice(i, 1);
+  localStorage.setItem("ptgmsh", JSON.stringify(data));
+  render();
+}
+
+function exportToExcel() {
+  const ws = XLSX.utils.table_to_sheet(document.getElementById("deviceTable"));
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Danh sách");
+  XLSX.writeFile(wb, "ptgmsh.xlsx");
+}
+
+function exportToPDF() {
+  const el = document.getElementById("deviceTable");
+  html2pdf().set({ filename: "ptgmsh.pdf" }).from(el).save();
+}
+
+function exportToWord() {
+  const header = "<html><head><meta charset='utf-8'></head><body>";
+  const footer = "</body></html>";
+  const html = header + document.getElementById("deviceTable").outerHTML + footer;
+  const blob = new Blob(["\ufeff", html], { type: "application/msword" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "ptgmsh.doc";
+  link.click();
+}
+</script>
+</body>
+</html>

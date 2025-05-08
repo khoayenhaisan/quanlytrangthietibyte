@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách các khoa</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .khoa {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .khoa:hover {
+      background: #e6f0fa;
+    }
+    .khoa img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 10px;
+    }
+    .khoa a {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<script>
+  if (!localStorage.getItem("loggedIn")) {
+    window.location.href = "login.html";
+  }
+</script>
+<h1 style="text-align:center;">DANH SÁCH CÁC KHOA</h1>
+<div class="grid">
+
+    <div class="khoa">
+      <a href="noi_tnt.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3209/3209137.png" alt="NỘI - TNT" />
+        <div>NỘI - TNT</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="noi2.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050525.png" alt="NỘI 2" />
+        <div>NỘI 2</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="noi3.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050506.png" alt="NỘI 3" />
+        <div>NỘI 3</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="noi4.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3050/3050503.png" alt="NỘI 4" />
+        <div>NỘI 4</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="ngoai_th.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/4768/4768621.png" alt="NGOẠI TH" />
+        <div>NGOẠI TH</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="ctch.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/5273/5273921.png" alt="CTCH" />
+        <div>CTCH</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="san.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/4086/4086679.png" alt="KHOA SẢN" />
+        <div>KHOA SẢN</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="nhi.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3144/3144464.png" alt="KHOA NHI" />
+        <div>KHOA NHI</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="capcuu.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="CẤP CỨU" />
+        <div>CẤP CỨU</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="hstc_cd.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="HSTC-CĐ" />
+        <div>HSTC-CĐ</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="ptgmsh.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/10393/10393154.png" alt="PTGMSH" />
+        <div>PTGMSH</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="cdha.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/10386/10386565.png" alt="CĐHA" />
+        <div>CĐHA</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="xetnghiem.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3515/3515805.png" alt="XÉT NGHIỆM" />
+        <div>XÉT NGHIỆM</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="lienck.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="LIÊN CK (M-TMH-RHM)" />
+        <div>LIÊN CK (M-TMH-RHM)</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="kham.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/2966/2966488.png" alt="KHÁM BỆNH" />
+        <div>KHÁM BỆNH</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="yhct.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/4149/4149643.png" alt="YHCT" />
+        <div>YHCT</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="ksnk.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/10363/10363297.png" alt="KSNK" />
+        <div>KSNK</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="pvtttbyt.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/9794/9794396.png" alt="PVTTTBYT" />
+        <div>PVTTTBYT</div>
+      </a>
+    </div>
+    
+    <div class="khoa">
+      <a href="khi.html">
+        <img src="https://cdn-icons-png.flaticon.com/512/2707/2707905.png" alt="KHI" />
+        <div>KHI</div>
+      </a>
+    </div>
+    </div>
+<hr>
+<h2 style="text-align:center;">📎 Tài liệu & Thông báo</h2>
+<div style="text-align:center; margin-bottom: 20px;">
+  <input type="file" id="fileInput" />
+  <button onclick="uploadFile()">Tải lên</button>
+</div>
+<table id="fileTable" style="margin:auto; background:white;">
+  <thead><tr><th>Tên file</th><th>Hành động</th></tr></thead>
+  <tbody id="fileList"></tbody>
+</table>
+
+<script>
+  const fileList = JSON.parse(localStorage.getItem("uploadedFiles") || "[]");
+  const fileListEl = document.getElementById("fileList");
+
+  function renderFiles() {
+    fileListEl.innerHTML = "";
+    fileList.forEach((f, i) => {
+      fileListEl.innerHTML += `<tr>
+        <td>${f.name}</td>
+        <td><a href="${f.data}" download="${f.name}">Tải xuống</a> | 
+        <button onclick="removeFile(${i})">Xoá</button></td>
+      </tr>`;
+    });
+  }
+
+  function uploadFile() {
+    const fileInput = document.getElementById("fileInput");
+    const file = fileInput.files[0];
+    if (!file) return alert("Vui lòng chọn file!");
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      fileList.push({ name: file.name, data: e.target.result });
+      localStorage.setItem("uploadedFiles", JSON.stringify(fileList));
+      renderFiles();
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function removeFile(index) {
+    if (confirm("Xoá file này?")) {
+      fileList.splice(index, 1);
+      localStorage.setItem("uploadedFiles", JSON.stringify(fileList));
+      renderFiles();
+    }
+  }
+
+  renderFiles();
+</script>
+</body></html>
